@@ -13,10 +13,9 @@ setup(
     description="A library for manipulating metadata in image files",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/YourUsername/metazap",  # Replace with your GitHub repository URL
+    url="https://github.com/ZuidVolt/MetaZap",
     project_urls={
-        "Issue Tracker": "https://github.com/YourUsername/metazap/issues",
-        "Changelog": "https://github.com/YourUsername/metazap/blob/main/CHANGELOG.md",
+        "Issue Tracker": "https://github.com/ZuidVolt/MetaZap/issues",
     },
     license="Apache Software License",
     keywords="metadata exif image processing",
@@ -33,7 +32,7 @@ setup(
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [
-            "metazap=metazap.cli:main",  # Assuming you'll add a CLI interface
+            "metazap=metazap.cli:main",
         ],
     },
 )
