@@ -57,6 +57,14 @@ from metazap import replace_fields_in_file
 replace_fields_in_file("original.jpg", {"Artist": "Jane Doe", "Copyright": "2024"}, "updated.jpg")
 ```
 
+Remove and replace metadata fields:
+
+```python
+from metazap import remove_and_replace_fields_in_file
+
+remove_and_replace_fields_in_file("original.jpg", ["GPSInfo"], {"Artist": "Jane Doe"}, "processed.jpg")
+```
+
 ### Bulk Directory Processing
 
 ```python
@@ -92,12 +100,14 @@ if __name__ == "__main__":
 
 ### Core Functions
 
-- `remove_fields_from_file(input_file: str, fields_to_remove: List[str], output_file: str) -> None`
-- `replace_fields_in_file(input_file: str, fields_to_replace: Dict[str, str], output_file: str) -> None`
-- `remove_fields_from_dir(input_dir: str, fields_to_remove: List[str], output_dir: str) -> None`
-- `replace_fields_in_dir(input_dir: str, fields_to_replace: Dict[str, str], output_dir: str) -> None`
-- `process_image(input_path: str, output_path: str, fields_to_remove: List[str], fields_to_replace: Dict[str, str]) -> None`
-- `process_directory(input_dir: str, output_dir: str, fields_to_remove: List[str], fields_to_replace: Dict[str, str]) -> None`
+- `remove_fields_from_file(input_file: Union[str, Path], fields_to_remove: List[str], output_file: Union[str, Path]) -> None`
+- `replace_fields_in_file(input_file: Union[str, Path], fields_to_replace: Dict[str, str], output_file: Union[str, Path]) -> None`
+- `remove_and_replace_fields_in_file(input_file: Union[str, Path], fields_to_remove: List[str], fields_to_replace: Dict[str, str], output_file: Union[str, Path]) -> None`
+- `remove_fields_from_dir(input_dir: Union[str, Path], fields_to_remove: List[str], output_dir: Union[str, Path]) -> None`
+- `replace_fields_in_dir(input_dir: Union[str, Path], fields_to_replace: Dict[str, str], output_dir: Union[str, Path]) -> None`
+- `remove_and_replace_fields_in_dir(input_dir: Union[str, Path], fields_to_remove: List[str], fields_to_replace: Dict[str, str], output_dir: Union[str, Path]) -> None`
+- `process_image(input_path: Path, output_path: Path, fields_to_remove: List[str], fields_to_replace: Dict[str, str]) -> None`
+- `process_directory(input_dir: Union[str, Path], output_dir: Union[str, Path], fields_to_remove: List[str], fields_to_replace: Dict[str, str]) -> None`
 
 For detailed parameter descriptions and return types, refer to the inline documentation or generated API docs.
 
