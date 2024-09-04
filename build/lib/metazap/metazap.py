@@ -8,7 +8,7 @@ import piexif  # type: ignore
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-SUPPORTED_EXTENSIONS = (".jpg", ".jpeg", ".png", ".heif", ".avif", ".jxl")
+SUPPORTED_EXTENSIONS = (".jpg", ".jpeg", ".png", ".heif", ".avif", ".jxl", ".webp", ".tiff", ".tif")
 
 
 def clean_metadata(  # noqa: C901
@@ -213,3 +213,65 @@ def remove_and_replace_fields_in_dir(
         None
     """
     process_directory(input_dir, output_dir, fields_to_remove, fields_to_replace)
+
+
+def export_file(input_file: Union[str, Path]) -> Dict[str, Any]:
+    """
+    Export metadata from a single image file as a dictionary.
+
+    Args:
+        input_file: The path to the input image file.
+
+    Returns:
+        A dictionary containing the metadata fields and their values.
+    """
+    input_path = Path(input_file)
+    metadata = {}
+
+    try:
+        with Image.open(input_path) as img:
+            if "exif" in img.info:
+                exif_dict = piexif.load(img.info["exif"])
+                for ifd in ("0th", "Exif", "GPS", "1st"):
+                    if ifd in exif_dict:
+                        for tag_id, value in exif_dict[ifd].items():
+                            tag_name = piexif.TAGS[ifd].get(tag_id, {}).get("name", f"Unknown_{tag_id}")
+                            if isinstance(value, bytes):
+                                try:
+                                    value = value.decode("utf-8")
+                                except UnicodeDecodeError:
+                                    value = value.hex()
+                            metadata[f"{ifd}:{tag_name}"] = value
+
+            # Include other metadata from img.info
+            for key, value in img.info.items():
+                if key != "exif":
+                    metadata[key] = value
+
+        logging.info(f"Successfully exported metadata from: {input_path}")
+    except Exception as e:
+        logging.error(f"Failed to export metadata from {input_path}: {e}")
+
+    return metadata
+
+
+def export_dir(input_dir: Union[str, Path]) -> Dict[str, Dict[str, Any]]:
+    """
+    Export metadata from all supported image files in a directory.
+
+    Args:
+        input_dir: The path to the input directory.
+
+    Returns:
+        A dictionary where keys are file names and values are dictionaries
+        containing the metadata fields and their values for each file.
+    """
+    input_path = Path(input_dir)
+    all_metadata = {}
+
+    for file_path in input_path.glob("*"):
+        if file_path.suffix.lower() in SUPPORTED_EXTENSIONS:
+            file_metadata = export_file(file_path)
+            all_metadata[file_path.name] = file_metadata
+
+    return all_metadata
