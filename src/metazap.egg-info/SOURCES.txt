@@ -3,6 +3,7 @@ README.md
 setup.py
 src/metazap/__init__.py
 src/metazap/metazap.py
+src/metazap/py.typed
 src/metazap.egg-info/PKG-INFO
 src/metazap.egg-info/SOURCES.txt
 src/metazap.egg-info/dependency_links.txt
