@@ -11,6 +11,8 @@ from .metazap import (
     remove_fields_from_dir,
     replace_fields_in_dir,
     remove_and_replace_fields_in_dir,
+    export_file,
+    export_dir,
 )
 
 __all__ = [
@@ -24,4 +26,6 @@ __all__ = [
     "remove_fields_from_dir",
     "replace_fields_in_dir",
     "remove_and_replace_fields_in_dir",
+    "export_file",
+    "export_dir",
 ]
