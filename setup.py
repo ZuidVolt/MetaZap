@@ -5,7 +5,7 @@ with open("README.md", "r") as f:  # noqa
 
 setup(
     name="metazap",
-    version="0.2.0",
+    version="0.3.0",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     install_requires=["pillow-avif-plugin", "pillow", "piexif", "pathlib", "typing"],
