@@ -1,5 +1,5 @@
 
-# metazap
+# MetaZap
 
 A Python library for removing and replacing metadata from image files.
 
