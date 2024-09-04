@@ -16,6 +16,9 @@ setup(
     url="https://github.com/ZuidVolt/MetaZap",
     project_urls={
         "Issue Tracker": "https://github.com/ZuidVolt/MetaZap/issues",
+        "Source Code": "https://github.com/ZuidVolt/MetaZap",
+        "Documentation": "https://github.com/ZuidVolt/MetaZap#readme",
+        "changelog": "https://github.com/ZuidVolt/MetaZap/releases",
     },
     license="Apache Software License",
     keywords="metadata exif image processing",
