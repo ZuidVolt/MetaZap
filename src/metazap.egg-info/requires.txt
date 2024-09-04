@@ -1,0 +1,5 @@
+pillow-avif-plugin
+pillow
+piexif
+pathlib
+typing

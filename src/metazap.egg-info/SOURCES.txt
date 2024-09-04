@@ -1,0 +1,12 @@
+LICENSE
+README.md
+setup.py
+src/metazap/__init__.py
+src/metazap/metazap.py
+src/metazap.egg-info/PKG-INFO
+src/metazap.egg-info/SOURCES.txt
+src/metazap.egg-info/dependency_links.txt
+src/metazap.egg-info/entry_points.txt
+src/metazap.egg-info/not-zip-safe
+src/metazap.egg-info/requires.txt
+src/metazap.egg-info/top_level.txt
